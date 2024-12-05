@@ -69,7 +69,7 @@ def visualizzaStato(spondaSinistra, spondaDestra):
     print("SPONDA SINISTRA: " + str(spondaSinistra))
     print("SPONDA DESTRA: " + str(spondaDestra))
 
-'''
+
 def game(stato_iniziale):
     spondaSinistra, spondaDestra = stato_iniziale
     print("Scegli un'azione: ")
@@ -92,11 +92,7 @@ def game(stato_iniziale):
       print("OBIETTIVO RAGGIUNTO: ")
       visualizzaStato(spondaSinistra, spondaDestra)
 
-spondaSx = ["Lupo", "Capra", "Cavolo", "Barca"]
-spondaDx = ["", "", "", ""]
-stato_iniziale = (spondaSx, spondaDx)
-game(stato_iniziale)
-'''
+
 
 def ricercaInProfondita(stato_corrente, stati_visitati, matrice, percorso_corrente):
     spondaSinistra, spondaDestra = stato_corrente
@@ -144,17 +140,29 @@ def ricercaInProfondita(stato_corrente, stati_visitati, matrice, percorso_corren
     print("Fallimento!")
     return False
 
-
-stati_visitati=set()
-matrice_stati=[] # Ogni riga rappresenta un percorso
-spondaSx = ["Lupo", "Capra", "Cavolo", "Barca"]
-spondaDx = ["", "", "", ""]
-stato_iniziale = (tuple(spondaSx), tuple(spondaDx))
-ricercaInProfondita(stato_iniziale, stati_visitati, matrice_stati, [])
-
-
-# Stampa la matrice degli stati attraversati per la soluzione
-i=0
-for riga in matrice_stati:
+def risolvi_automaticamente():
+  stati_visitati=set()
+  matrice_stati=[] # Ogni riga rappresenta un percorso
+  spondaSx = ["Lupo", "Capra", "Cavolo", "Barca"]
+  spondaDx = ["", "", "", ""]
+  stato_iniziale = (tuple(spondaSx), tuple(spondaDx))
+  ricercaInProfondita(stato_iniziale, stati_visitati, matrice_stati, [])
+  # Stampa la matrice degli stati attraversati per la soluzione
+  i=0
+  for riga in matrice_stati:
     print(str(i)+") "+str(riga))
     i=i+1
+
+def risolvi_tu():
+    spondaSx = ["Lupo", "Capra", "Cavolo", "Barca"]
+    spondaDx = ["", "", "", ""]
+    stato_iniziale = (spondaSx, spondaDx)
+    game(stato_iniziale)
+
+print("Digita 0 se vuoi provare a risolvere tu il gioco")
+print("Digita qualsiasi altro tasto per avere una risoluzione automatica")
+scelta = input()
+if(scelta=="0"):
+    risolvi_tu()
+else:
+    risolvi_automaticamente()
